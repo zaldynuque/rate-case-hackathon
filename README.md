@@ -1,2 +1,2 @@
-# rate-case-hackathon
-Rate Case Advisor – Hackathon Minimum Delivery (GCP Monorepo)
+# Full Hackathon Repo
+See service code and Terraform. Configure DOCAI_PROCESSOR_ID and GCP credentials.
