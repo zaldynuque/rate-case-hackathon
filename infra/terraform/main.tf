@@ -1,0 +1,2 @@
+resource "google_project_service" "services" { for_each = toset(["bigquery.googleapis.com","run.googleapis.com","artifactregistry.googleapis.com","aiplatform.googleapis.com","documentai.googleapis.com","storage.googleapis.com","pubsub.googleapis.com"]); service = each.key }
+resource "google_artifact_registry_repository" "docker" { location=var.region repository_id="${var.service_name_prefix}-repo" description="Docker images" format="DOCKER" }

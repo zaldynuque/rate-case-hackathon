@@ -1,0 +1,4 @@
+locals { repo = "${var.region}-docker.pkg.dev/${var.project_id}/${var.service_name_prefix}-repo" }
+resource "google_cloud_run_v2_service" "ingest" { name="${var.service_name_prefix}-ingest" location=var.region template { containers { image="${local.repo}/ingest:latest" env { name="BQ_DATASET" value=var.dataset_id } env { name="LOCATION" value=var.region } } } }
+resource "google_cloud_run_v2_service" "embed" { name="${var.service_name_prefix}-embed" location=var.region template { containers { image="${local.repo}/embed:latest" env { name="BQ_DATASET" value=var.dataset_id } env { name="LOCATION" value=var.region } } } }
+resource "google_cloud_run_v2_service" "retriever" { name="${var.service_name_prefix}-retriever" location=var.region template { containers { image="${local.repo}/retriever:latest" env { name="BQ_DATASET" value=var.dataset_id } env { name="LOCATION" value=var.region } } } }
